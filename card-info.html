@@ -42,10 +42,13 @@
                             $( '#card-nome' ).html(decodeURIComponent(unescape(card['name_us'])));
                         }
                 
-                        if (card['conv'] === '') {
+                        if (card['cost'] == '{}') {
                             $( '#tr-custo' ).css({ 'display' : 'none' });
                         } else {
-                            $( '#card-custo' ).html(decodeURIComponent(unescape(card['cost']))+' ('+card['conv']+')');
+                            var cost = decodeURIComponent(unescape(card['cost']));
+                            var display_cost_partial = cost.replace(/{/g, '<img src="imgs/mana/');
+                            var display_cost = display_cost_partial.replace(/}/g, '.png" class="symbol" />');
+                            $( '#card-custo' ).html(display_cost+' ('+card['conv']+')');
                         }
 
                         $( '#card-tipos' ).html(decodeURIComponent(unescape(card['types_br'])));
@@ -59,7 +62,10 @@
                         if (card['text'] === '') {
                             $( '#tr-texto' ).css({ 'display' : 'none' });
                         } else {
-                             $( '#card-texto' ).html(decodeURIComponent(unescape(card['text'])));
+                            var text = decodeURIComponent(unescape(card['text']));
+                            var display_text_partial = text.replace(/{/g, '<img src="imgs/mana/');
+                            var display_text = display_text_partial.replace(/}/g, '.png" class="symbol" />');
+                             $( '#card-texto' ).html(display_text);
                         }
 
                         if (card['power'] === '') {
@@ -127,7 +133,7 @@
                     'display' : 'none'
                 }); 
            }
-            
+        
         });
     
     </script>
@@ -203,16 +209,12 @@
                             <td class="t-center">Maior</td>
                         </tr>
                         <tr>
-                            <td><span style="background-color:#cfa;" class="bg" id="card-low"></span></td>
-                            <td><span style="background-color:#ff9;" class="bg" id="card-mid"></span></td>
-                            <td><span style="background-color:#fcc;" class="bg" id="card-hi"></span></td>
+                            <td><span style="background-color:#cfa;" class="bg" id="card-low">R$ 10,00</span></td>
+                            <td><span style="background-color:#ff9;" class="bg" id="card-mid">R$ 11,00</span></td>
+                            <td><span style="background-color:#fcc;" class="bg" id="card-hi">R$ 12,00</span></td>
                         </tr>
                     </table>
                 </td>
-            </tr>
-            <tr>
-                <td class="t-left onoff" ><span style="background-color:#fcc;" class="bg" id="card-state"></span></td>
-                <td class="t-right onoff" id="card-msg"></td>
             </tr>
         </table>
         

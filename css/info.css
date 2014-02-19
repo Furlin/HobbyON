@@ -66,6 +66,14 @@ table, tr, td {
     line-height:20px
 }
 
+.symbol {
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .onoff {
     color:#000;
     font-size:13px;
@@ -112,6 +120,11 @@ table, tr, td {
         height:32px;
     }
     
+    .symbol {
+        width: 32px;
+        height: 32px;
+    }
+    
 }
 
 @media (min-width:480px) and (max-width:599px) {
@@ -151,6 +164,11 @@ table, tr, td {
         height:28px;
     }
     
+    .symbol {
+        width: 28px;
+        height: 28px;
+    }
+    
 }
 
 @media (max-width:479px) {
@@ -188,6 +206,11 @@ table, tr, td {
         background:url(../imgs/icons/us-22x22.png) no-repeat center;
         width:22px;
         height:22px;
+    }
+    
+    .symbol {
+        width: 22px;
+        height: 22px;
     }
     
 }
