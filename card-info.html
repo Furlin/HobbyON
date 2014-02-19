@@ -132,19 +132,19 @@
                     
                 }, 100);
                 
+                if($( 'body' ).height() > $(window).height()) {
+                    $( '#logo' ).css({
+                        'display' : 'none'
+                    });
+                    $( '#slogan-wrapper' ).css({
+                        'display' : 'none'
+                    }); 
+                    $( '#line2' ).css({
+                        'display' : 'none'
+                    }); 
+               }
+                
             });
-            
-            if($( 'body' ).height() > $(window).height()) {
-                $( '#logo' ).css({
-                    'display' : 'none'
-                });
-                $( '#slogan-wrapper' ).css({
-                    'display' : 'none'
-                }); 
-                $( '#line2' ).css({
-                    'display' : 'none'
-                }); 
-           }
         
         });
     
