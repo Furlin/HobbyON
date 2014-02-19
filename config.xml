@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "org.furlin.hobbyon"
+    version     = "0.1.0" >
+
+    <name>HobbyON - MTG Prices</name>
+
+    <description>
+      App to get MTG cards prices and info.
+    </description>
+
+    <author href="https://furlin.org" email="vitor@furlin.org">
+      Vitor T. Furlin
+    </author>
+
+    <access origin="http://furlin.org" subdomains="true" />
+
+</widget>
