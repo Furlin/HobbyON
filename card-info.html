@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>HobbyON</title>
+    
+    <link href="css/base.css" rel="stylesheet" type="text/css" />
+    <link href="css/font.css" rel="stylesheet" type="text/css" />
+    <link href="css/logo.css" rel="stylesheet" type="text/css" />
+    <link href="css/info.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    
+    <meta charset="utf-8" />
+    
+    <script>
+        
+        var id = document.location.search.substr(4);
+        
+        if (id > 100000) {
+            id -= 100000;
+        }
+        
+        var viewport = {
+            width : $(window).width(),
+            height : $(window).height()
+        };
+        
+        $( document ).ready(function() {
+            
+            $.getScript( "http://localhost?id="+id, function( script, textStatus ) {
+            
+                var times = 0;
+                var timer = setInterval( function(){
+                    
+                    if(window.card !== undefined) {
+                        clearInterval(timer);
+                        
+                        if (card['name_br'] !== '') {
+                            $( '#card-nome' ).html(decodeURIComponent(unescape(card['name_br'])));
+                        } else {
+                            $( '#card-nome' ).html(decodeURIComponent(unescape(card['name_us'])));
+                        }
+                
+                        if (card['conv'] === '') {
+                            $( '#tr-custo' ).css({ 'display' : 'none' });
+                        } else {
+                            $( '#card-custo' ).html(decodeURIComponent(unescape(card['cost']))+' ('+card['conv']+')');
+                        }
+
+                        $( '#card-tipos' ).html(decodeURIComponent(unescape(card['types_br'])));
+
+                        if (card['subtypes_br'] === '') {
+                            $( '#tr-subs' ).css({ 'display' : 'none' });
+                        } else {
+                            $( '#card-subs' ).html(decodeURIComponent(unescape(card['subtypes_br'])));
+                        }
+
+                        if (card['text'] === '') {
+                            $( '#tr-texto' ).css({ 'display' : 'none' });
+                        } else {
+                             $( '#card-texto' ).html(decodeURIComponent(unescape(card['text'])));
+                        }
+
+                        if (card['power'] === '') {
+                            $( '#tr-poder' ).css({ 'display' : 'none' });
+                        } else {
+                            $( '#card-poder' ).html(decodeURIComponent(unescape(card['power']))+'/'+decodeURIComponent(unescape(card['resist'])));
+                        }
+
+                        if (card['loyalty'] === '') {
+                            $( '#tr-lealdade' ).css({ 'display' : 'none' });
+                        } else {
+                            $( '#card-lealdade' ).html(decodeURIComponent(unescape(card['loyalty'])));
+                        }
+                        
+                        if($.map(card['sets'], function(n, i) {return i;}).length > 1) {
+                            rare = 1;
+                            $( '#card-set' ).html('<select id="select-set" class="t-right">');
+                            $.each (card['sets'], function (set) {
+                                if(card['sets'][set]['br'] !== '') {
+                                    $( '#select-set' ).append('<option value="'+set+'">'+decodeURIComponent(unescape(card['sets'][set]['br']))+'</option>');
+                                } else {
+                                     $( '#select-set' ).append('<option value="'+set+'">'+decodeURIComponent(unescape(card['sets'][set]['us']))+'</option>');
+                                }
+                                if(rare == 1) {
+                                    $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][set]['rarity_br'])));
+                                    rare = 0;
+                                }
+                            });
+                            $( '#card-set' ).append('</select>');
+                        } else {
+                            $.each (card['sets'], function (set) {
+                                if(card['sets'][set]['br'] !== '') {
+                                    $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['br'])));
+                                } else {
+                                    $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['us'])));
+                                }
+                                $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][set]['rarity_br'])));
+                            });
+                        }
+                        
+                        $( '#select-set' ).change(function() {
+                            var changeset = $( '#select-set' ).val();
+                            $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][changeset]['rarity_br'])));
+                        });
+                        
+                    } else {
+                        times += 1;
+                        if(times >= 1000) {
+                            clearInterval(timer);
+                        }
+                    }
+                    
+                }, 100);
+                
+            });
+            
+            if($( 'body' ).height() > $(window).height()) {
+                $( '#logo' ).css({
+                    'display' : 'none'
+                });
+                $( '#slogan-wrapper' ).css({
+                    'display' : 'none'
+                }); 
+                $( '#line2' ).css({
+                    'display' : 'none'
+                }); 
+           }
+            
+        });
+    
+    </script>
+    
+</head>
+<body>
+    
+    <div id="top" class="linux">
+        <div id="link-menu">MENU<div id="top-menu"></div></div>
+    </div>
+    
+    <div class="line"></div>
+    
+    <div id="logo"></div>
+    <div id="slogan-wrapper">
+        <div id="slogan" class="linux">SEU HOBBY ONLINE</div>
+    </div>
+
+    <div class="line" id="line2" style="background-color:#009;"></div>
+    
+    <div id="main">
+        
+        <a href="#">
+            <div id="img"></div>
+            <div class="t-right lucida" id="image">imagem</div>
+        </a>
+        <div class="t-right lucida" id="idioma">exibir em:<div id="br"></div><div id="us"></div></div> 
+        
+        <table class="lucida">
+            <tr>
+                <td class="t-left">Nome:</td>
+                <td class="t-right" id="card-nome"></td>
+            </tr>
+            <tr id="tr-custo">
+                <td class="t-left">Custo:</td>
+                <td class="t-right" id="card-custo"></td>
+            </tr>  
+            <tr id="tr-tipos">
+                <td class="t-left">Tipo(s):</td>
+                <td class="t-right" id="card-tipos"></td>
+            </tr>
+            <tr id="tr-subs">
+                <td class="t-left">Subtipo(s):</td>
+                <td class="t-right" id="card-subs"></td>
+            </tr>
+            <tr id="tr-texto">
+                <td class="t-left">Texto:</td>
+                <td class="t-just" id="card-texto"></td>
+            </tr> 
+            <tr id="tr-lealdade">
+                <td class="t-left">Lealdade:</td>
+                <td class="t-right" id="card-lealdade"></td>
+            </tr>
+            <tr id="tr-poder">
+                <td class="t-left">Poder/Resist:</td>
+                <td class="t-right" id="card-poder"></td>
+            </tr>
+            <tr>
+                <td class="t-left">Edição:</td>
+                <td class="t-right" id="card-set"></td>
+            </tr>
+            <tr>
+                <td class="t-left">Raridade:</td>
+                <td class="t-right" id="card-raridade"></td>
+            </tr>
+            <tr>
+                <td class="t-left">Preços:</td>
+                <td class="t-right">
+                    <table>
+                        <tr>
+                            <td class="t-center">Menor</td>
+                            <td class="t-center">Médio</td>
+                            <td class="t-center">Maior</td>
+                        </tr>
+                        <tr>
+                            <td><span style="background-color:#cfa;" class="bg" id="card-low"></span></td>
+                            <td><span style="background-color:#ff9;" class="bg" id="card-mid"></span></td>
+                            <td><span style="background-color:#fcc;" class="bg" id="card-hi"></span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="t-left onoff" ><span style="background-color:#fcc;" class="bg" id="card-state"></span></td>
+                <td class="t-right onoff" id="card-msg"></td>
+            </tr>
+        </table>
+        
+    </div>
+    
+</body>
+</html>

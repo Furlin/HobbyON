@@ -1,0 +1,17 @@
+@font-face{
+    font-family: "Linux"; 
+    src: url('../font/LinBiolinum_R.otf') format('opentype');
+}
+
+.linux {
+    font-family: "Linux";
+}
+
+@font-face{
+    font-family: "Lucida"; 
+    src: url('../font/LucidaGrande.ttf') format('truetype');
+}
+
+.lucida {
+    font-family: "Lucida";
+}

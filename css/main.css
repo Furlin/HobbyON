@@ -1,0 +1,41 @@
+#menu-list {
+    list-style-type:none;
+    padding:0px;
+    margin:0px;
+    font-size:32px;
+    margin-left:12px;
+}
+
+#menu-list li a {
+    text-decoration:none;
+    color:#000;
+}
+
+#menu-list li {
+    border-bottom:1px solid #333;
+    padding:10px 0px;
+}
+
+@media (min-width:600px) {
+    
+    #menu-list {
+        font-size:48px;
+    }
+    
+}
+
+@media (min-width:480px) and (max-width:599px) {
+    
+    #menu-list {
+        font-size:32px;
+    }
+    
+}
+
+@media (max-width:479px) {
+    
+    #menu-list {
+        font-size:24px;
+    }
+    
+}

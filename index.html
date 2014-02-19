@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>HobbyON</title>
+    
+    <link href="css/auto.css" rel="stylesheet" type="text/css" />
+    <link href="css/base.css" rel="stylesheet" type="text/css" />
+    <link href="css/font.css" rel="stylesheet" type="text/css" />
+    <link href="css/logo.css" rel="stylesheet" type="text/css" />
+    <link href="css/form.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    
+    <meta charset="utf-8" />
+    
+    <script>
+        
+        var viewport = {
+            width : $(window).width(),
+            height : $(window).height()
+        };
+        
+        $( document ).ready(function() {
+            
+            $( '#search' ).css({
+                'width' : viewport.width-25
+            });
+            
+            $( '#menu' ).css({
+                'width' : viewport.width-16
+            });
+            
+        });
+    
+    </script>
+    
+</head>
+<body>
+    
+    <div class="line"></div>
+    
+    <div id="logo"></div>
+    <div id="slogan-wrapper">
+        <div id="slogan" class="linux">SEU HOBBY ONLINE</div>
+    </div>
+
+    <div class="line" style="background-color:#009;"></div>
+    
+    <div id="main">
+        
+        <input type="text" name="card" id="search" placeholder="buscar cartas" />
+        
+        <div id="menu" class="linux">
+            <ul id="menu-list">
+                <li><a href="adv-search.html">Busca Avançada</a></li>
+                <li><a href="card-info.html">Buscar Decks</a></li>
+                <li>Personalizar Aplicativo</li>
+                <li>Sobre o HobbyON</li>
+                <li>Politica de Privacidade</li>
+                <li>Termos de Uso</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/names-autocomplete.min.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/mockjack.min.js"></script>
+    <script type="text/javascript" src="js/autocomplete.min.js"></script>
+    
+</body>
+</html>

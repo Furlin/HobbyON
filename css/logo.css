@@ -1,0 +1,55 @@
+#logo {
+    width:100%;
+}
+
+#slogan-wrapper {
+    width:100%;
+    background-color:#eee;
+    padding-bottom:5px;
+}
+
+#slogan {
+    margin:0px auto;
+    text-align:right;
+}
+
+@media (min-width:600px) {
+    
+    #logo {
+        height:126px;
+        background:url(../imgs/logo-480x96.png) no-repeat center #eee;
+    }
+    
+    #slogan {
+        font-size:36px;
+        width:480px;
+    }
+    
+}
+
+@media (min-width:480px) and (max-width:599px) {
+    
+    #logo {
+        height:102px;
+        background:url(../imgs/logo-384x77.png) no-repeat center #eee;
+    }
+    
+    #slogan {
+        font-size:24px;
+        width:384px;
+    }
+    
+}
+
+@media (max-width:479px) {
+    
+    #logo {
+        height:71px;
+        background:url(../imgs/logo-256x51.png) no-repeat center #eee;
+    }
+                    
+    #slogan {
+        font-size:16px;
+        width:256px;
+    }
+}

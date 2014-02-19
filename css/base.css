@@ -1,0 +1,108 @@
+body, div {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    margin:0px;
+}
+
+#main {
+    width:100%;
+}
+
+#top {
+    width:100%;
+    height:60px;
+    background-color:#009;
+    color:#fff;
+    font-size:48px;
+    text-align:right;
+    line-height:60px;
+}
+
+#top a {
+    text-decoration:none;
+    color:#fff;
+}
+
+#gear, #top-menu {
+    float:right;
+}
+
+.line {
+    width:100%;
+    height:5px;
+    background-color:#06c;
+}
+
+@media (min-width:600px) {
+    
+    #top {
+        font-size:64px;
+        height:72px;
+        line-height:72px;
+    }
+    
+    #gear {
+        width:72px;
+        height:72px;
+        background:url(../imgs/gear-60x60.png) no-repeat center;
+    }
+    
+    #top-menu {
+        width:72px;
+        height:72px;
+        background:url(../imgs/menu-72x72.png) no-repeat center;
+    }
+    
+}
+
+@media (min-width:480px) and (max-width:599px) {
+                
+    #top {
+        font-size:52px;
+        height:60px;
+        line-height:60px;
+    }
+    
+    #gear {
+        width:60px;
+        height:60px;
+        background:url(../imgs/gear-48x48.png) no-repeat center;
+    }
+    
+    #top-menu {
+        width:60px;
+        height:60px;
+        background:url(../imgs/menu-60x60.png) no-repeat center;
+    }
+    
+}
+
+@media (max-width:479px) {
+                
+    #top {
+        font-size:40px;
+        height:48px;
+        line-height:48px;
+    }
+    
+    #gear {
+        width:48px;
+        height:48px;
+        background:url(../imgs/gear-32x32.png) no-repeat center;
+    }
+    
+    #top-menu {
+        width:48px;
+        height:48px;
+        background:url(../imgs/menu-48x48.png) no-repeat center;
+    }
+
+}
