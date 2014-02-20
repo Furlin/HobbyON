@@ -18,6 +18,16 @@ table, tr, td {
     color:#000;
 }
 
+#text {
+    float:left;
+    background:url(../imgs/icons/text-22x22.png) no-repeat center;
+    width:22px;
+    height:22px;
+    padding:3px;
+    padding-left:10px;
+    padding-right:0;
+}
+
 #img {
     float:left;
     background:url(../imgs/icons/img-22x22.png) no-repeat center;
@@ -108,6 +118,12 @@ table, tr, td {
         height:32px;
     }
     
+    #text {
+        background:url(../imgs/icons/text-32x32.png) no-repeat center;
+        width:32px;
+        height:32px;
+    }
+    
     #br {
         background:url(../imgs/icons/br-32x32.png) no-repeat center;
         width:32px;
@@ -149,6 +165,12 @@ table, tr, td {
     
     #img {
         background:url(../imgs/icons/img-28x28.png) no-repeat center;
+        width:28px;
+        height:28px;
+    }
+    
+    #text {
+        background:url(../imgs/icons/text-28x28.png) no-repeat center;
         width:28px;
         height:28px;
     }
@@ -194,6 +216,12 @@ table, tr, td {
     
     #img {
         background:url(../imgs/icons/img-22x22.png) no-repeat center;
+        width:22px;
+        height:22px;
+    }
+    
+    #text {
+        background:url(../imgs/icons/text-22x22.png) no-repeat center;
         width:22px;
         height:22px;
     }

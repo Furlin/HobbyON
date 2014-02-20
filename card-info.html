@@ -47,6 +47,8 @@
                         $( '#main' ).css({ 'display' : 'block' });
                         $( '#loading' ).css({ 'display' : 'none' });
                         
+                         $( '#link' ).attr('href','card.html?id='+id);
+                        
                         if (card['name_br'] !== '') {
                             $( '#card-nome' ).html(decodeURIComponent(unescape(card['name_br'])));
                         } else {
@@ -168,9 +170,9 @@
     
     <div id="main">
         
-        <a href="#">
+        <a href="#" id="link">
             <div id="img"></div>
-            <div class="t-right lucida" id="image">imagem</div>
+            <div class="t-right lucida" id="image">ver imagem</div>
         </a>
         <div class="t-right lucida" id="idioma">exibir em:<div id="br"></div><div id="us"></div></div> 
         

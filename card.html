@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>HobbyON</title>
+    
+    <link href="css/base.css" rel="stylesheet" type="text/css" />
+    <link href="css/font.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/imgs.css" rel="stylesheet" type="text/css" />
+    <link href="css/info.css" rel="stylesheet" type="text/css" />
+    
+    <meta charset="utf-8" />
+    
+    <style type="text/css">
+    
+        #main {
+            display: none;
+        }
+        
+    </style>
+
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    
+    <script>
+        
+        var id = document.location.search.substr(4);
+        
+        if (id > 100000) {
+            id -= 100000;
+        }
+        
+        var viewport = {
+            width : $(window).width(),
+            height : $(window).height()
+        };
+        
+        $( document ).ready(function() {
+            
+            $.getScript( "http://furlin.org/__hobbyon?id="+id+"&img=1", function( script, textStatus ) {
+            
+                var times = 0;
+                var timer = setInterval( function(){
+                    
+                    if(window.card !== undefined) {
+                        clearInterval(timer);
+                        
+                        $( '#main' ).css({ 'display' : 'block' });
+                        $( '#loading' ).css({ 'display' : 'none' });
+                        
+                        var name = decodeURIComponent(unescape(card['name_us']));
+                        var code = decodeURIComponent(unescape(card['code']));
+                        
+                        $( '#link' ).attr('href','card-info.html?id='+id);
+                        
+                        $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/br/'+code+'/'+name+'.jpg');
+
+                        if($.map(card['sets'], function(n, i) {return i;}).length > 1) {
+                            $( '#card-set' ).html('<select id="select-set" class="t-right">');
+                            $.each (card['sets'], function (set) {
+                                if(card['sets'][set]['br'] !== '') {
+                                    $( '#select-set' ).append('<option value="'+card['sets'][set]['code']+'">'+decodeURIComponent(unescape(card['sets'][set]['br']))+'</option>');
+                                } else {
+                                     $( '#select-set' ).append('<option value="'+card['sets'][set]['code']+'">'+decodeURIComponent(unescape(card['sets'][set]['us']))+'</option>');
+                                }
+                            });
+                            $( '#card-set' ).append('</select>');
+                        } else {
+                            $.each (card['sets'], function (set) {
+                                if(card['sets'][set]['br'] !== '') {
+                                    $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['br'])));
+                                } else {
+                                    $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['us'])));
+                                }
+                            });
+                        }
+                        
+                        $( '#select-set' ).change(function() {
+                            var changeset = $( '#select-set' ).val();
+                            $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/br/'+changeset+'/'+name+'.jpg');
+                        });
+                        
+                    } else {
+                        times += 1;
+                        if(times >= 100) {
+                            clearInterval(timer);
+                            $( '#loading' ).append(' conexão fail!');
+                        }
+                    }
+                    
+                }, 100);
+                
+                if($( 'body' ).height() > $(window).height()) {
+                    $( '#logo' ).css({
+                        'display' : 'none'
+                    });
+                    $( '#slogan-wrapper' ).css({
+                        'display' : 'none'
+                    }); 
+                    $( '#line2' ).css({
+                        'display' : 'none'
+                    }); 
+               }
+                
+            });
+        
+        });
+    
+    </script>
+    
+</head>
+<body>
+    
+    <div id="top" class="linux">
+        <div id="link-menu">MENU<div id="top-menu"></div></div>
+    </div>
+    
+    <div class="line"></div>
+    
+    <div id="main">
+        
+        <a href="#" id="link">
+            <div id="text"></div>
+            <div class="t-right lucida" id="image">ver como texto</div>
+        </a>
+        <div class="t-right lucida" id="idioma">exibir em:<div id="br"></div><div id="us"></div></div>
+        
+        <div>
+            <img src="E:\Sites\Porto Livre\imgs\cards\THS/elspeth_suns_champion.jpg" class="img" id="card_img" />
+        </div>
+        
+        <table class="lucida" id="table">
+            <tr>
+                <td class="t-left">Edição:</td>
+                <td class="t-right" id="card-set"></td>
+            </tr>
+            <tr>
+                <td class="t-left">Preços:</td>
+                <td class="t-right">
+                    <table>
+                        <tr>
+                            <td class="t-center">Menor</td>
+                            <td class="t-center">Médio</td>
+                            <td class="t-center">Maior</td>
+                        </tr>
+                        <tr>
+                            <td><span style="background-color:#cfa;" class="bg" id="card-low">R$ 10,00</span></td>
+                            <td><span style="background-color:#ff9;" class="bg" id="card-mid">R$ 11,00</span></td>
+                            <td><span style="background-color:#fcc;" class="bg" id="card-hi">R$ 12,00</span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+    
+        
+    <div id="loading">
+        Carregando informações...
+    </div>
+    
+</body>
+</html>
