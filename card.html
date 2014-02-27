@@ -17,12 +17,15 @@
         #main {
             display: none;
         }
-        
+    
     </style>
 
     <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
     
     <script>
+        
+        var last = 0;
+        var last_lang = '';
         
         var id = document.location.search.substr(4);
         
@@ -36,8 +39,29 @@
         };
         
         $( document ).ready(function() {
+            populate('br', 1);
+        });
+        
+        function populate(lang, first) {
             
-            $.getScript( "http://furlin.org/__hobbyon?id="+id+"&img=1", function( script, textStatus ) {
+            if(new Date().getTime() <= 300 - last) return;
+            
+            if(last_lang == lang) return;
+            
+            if(lang == '') {
+                if (last_lang == '') {
+                    lang = 'br';
+                } else {
+                    lang = last_lang;
+                }
+            }
+            
+            last = new Date().getTime();
+            
+            last_lang = lang;
+        
+            $.getScript( "http://furlin.org/__hobbyon?id="+id+"&img=1")
+            .done(function( script, textStatus ) {
             
                 var times = 0;
                 var timer = setInterval( function(){
@@ -45,46 +69,72 @@
                     if(window.card !== undefined) {
                         clearInterval(timer);
                         
+                        
+                        $( '#img_loader' ).show();
+                        $( '#card_img' ).hide();
+                        
                         $( '#main' ).css({ 'display' : 'block' });
                         $( '#loading' ).css({ 'display' : 'none' });
-                        
+                                    
                         var name = decodeURIComponent(unescape(card['name_us']));
-                        var code = decodeURIComponent(unescape(card['code']));
-                        
+                        name = name.replace(/Æ/g, 'ae');
+                        var code = decodeURIComponent(unescape(card['code']));          
                         $( '#link' ).attr('href','card-info.html?id='+id);
-                        
-                        $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/br/'+code+'/'+name+'.jpg');
 
                         if($.map(card['sets'], function(n, i) {return i;}).length > 1) {
+                            var img = 1;
                             $( '#card-set' ).html('<select id="select-set" class="t-right">');
                             $.each (card['sets'], function (set) {
-                                if(card['sets'][set]['br'] !== '') {
-                                    $( '#select-set' ).append('<option value="'+card['sets'][set]['code']+'">'+decodeURIComponent(unescape(card['sets'][set]['br']))+'</option>');
+                                if(card['sets'][set]['br'] !== '' && lang == 'br') {
+                                    $( '#select-set' ).append('<option value="'+card['sets'][set]['code']+'_'+card['sets'][set]['end']+'">'+decodeURIComponent(unescape(card['sets'][set]['br']))+'</option>');
                                 } else {
-                                     $( '#select-set' ).append('<option value="'+card['sets'][set]['code']+'">'+decodeURIComponent(unescape(card['sets'][set]['us']))+'</option>');
+                                     $( '#select-set' ).append('<option value="'+card['sets'][set]['code']+'_'+card['sets'][set]['end']+'">'+decodeURIComponent(unescape(card['sets'][set]['us']))+'</option>');
+                                }
+                                if(img) {
+                                    if(first) {
+                                        $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/'+lang+'/'+code+'/'+name+card['sets'][set]['end']+'.jpg');
+                                        changeset = code+'_'+card['sets'][set]['end'];
+                                    }
+                                    img = 0;
                                 }
                             });
                             $( '#card-set' ).append('</select>');
+                            if(!first) {
+                                var change = changeset.split('_');
+                                var cset = change[0];
+                                var end = change[1] ? change[1] : '';
+                                $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/'+lang+'/'+cset+'/'+name+end+'.jpg');
+                                $( '#select-set' ).val(changeset);
+                            }
                         } else {
                             $.each (card['sets'], function (set) {
-                                if(card['sets'][set]['br'] !== '') {
+                                if(lang == 'br' && card['sets'][set]['br'] !== '') {
                                     $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['br'])));
                                 } else {
                                     $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['us'])));
                                 }
+                                $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/'+lang+'/'+code+'/'+name+'.jpg');
                             });
                         }
                         
                         $( '#select-set' ).change(function() {
-                            var changeset = $( '#select-set' ).val();
-                            $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/br/'+changeset+'/'+name+'.jpg');
+                            changeset = $( '#select-set' ).val();
+                            var change = changeset.split('_');
+                            var cset = change[0];
+                            var end = change[1] ? change[1] : '';
+                            $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/'+lang+'/'+cset+'/'+name+end+'.jpg');
+                        });
+                        
+                        $( '#card_img' ).load( function () {
+                            $( '#card_img' ).show();
+                            $( '#img_loader' ).hide();
                         });
                         
                     } else {
                         times += 1;
-                        if(times >= 100) {
+                        if(times >= 50) {
                             clearInterval(timer);
-                            $( '#loading' ).append(' conexão fail!');
+                            $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate(\'\', 0);\" />');
                         }
                     }
                     
@@ -101,10 +151,11 @@
                         'display' : 'none'
                     }); 
                }
-                
+            })
+            .fail(function( jqxhr, settings, exception ) {
+                 $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate(\'\', 0);\" />');
             });
-        
-        });
+        }
     
     </script>
     
@@ -123,10 +174,11 @@
             <div id="text"></div>
             <div class="t-right lucida" id="image">ver como texto</div>
         </a>
-        <div class="t-right lucida" id="idioma">exibir em:<div id="br"></div><div id="us"></div></div>
+        <div class="t-right lucida" id="idioma">exibir em:<div id="br" onclick="populate('br', 0);"></div><div id="us" onclick="populate('us', 0);"></div></div>
         
         <div>
-            <img src="E:\Sites\Porto Livre\imgs\cards\THS/elspeth_suns_champion.jpg" class="img" id="card_img" />
+            <img src="imgs/img_loading.gif" class="img" id="card_img" />
+            <img src="imgs/img_loading.gif" class="img" id="img_loader" />
         </div>
         
         <table class="lucida" id="table">
@@ -157,7 +209,7 @@
     
         
     <div id="loading">
-        Carregando informações...
+        <img src="imgs/loading.gif" class="img" />
     </div>
     
 </body>

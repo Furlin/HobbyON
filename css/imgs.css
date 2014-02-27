@@ -3,8 +3,12 @@
     max-width: 720px;
 }
 
-#main {
+#main, #loading {
     text-align: center;
+}
+
+#loading {
+    padding: 10px;
 }
 
 #idioma {

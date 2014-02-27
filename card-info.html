@@ -25,6 +25,8 @@
         
         var id = document.location.search.substr(4);
         
+        //var changeset = null;
+        
         if (id > 100000) {
             id -= 100000;
         }
@@ -35,11 +37,16 @@
         };
         
         $( document ).ready(function() {
+            populate('br', 1);
+        });
+        
+        function populate(lang, first) {
             
-            $.getScript( "http://furlin.org/__hobbyon?id="+id, function( script, textStatus ) {
+                $.getScript( "http://furlin.org/__hobbyon?id="+id)
+                .done( function( script, textStatus ) {
             
-                var times = 0;
-                var timer = setInterval( function(){
+                    var times = 0;
+                    var timer = setInterval( function(){
                     
                     if(window.card !== undefined) {
                         clearInterval(timer);
@@ -49,7 +56,7 @@
                         
                          $( '#link' ).attr('href','card.html?id='+id);
                         
-                        if (card['name_br'] !== '') {
+                        if (lang == 'br' && card['name_br'] !== '') {
                             $( '#card-nome' ).html(decodeURIComponent(unescape(card['name_br'])));
                         } else {
                             $( '#card-nome' ).html(decodeURIComponent(unescape(card['name_us'])));
@@ -64,12 +71,16 @@
                             $( '#card-custo' ).html(display_cost+' ('+card['conv']+')');
                         }
 
-                        $( '#card-tipos' ).html(decodeURIComponent(unescape(card['types_br'])));
+                        $( '#card-tipos' ).html(decodeURIComponent(unescape(card['types_'+lang])));
 
-                        if (card['subtypes_br'] === '') {
+                        if (card['subtypes_us'] === '') {
                             $( '#tr-subs' ).css({ 'display' : 'none' });
                         } else {
-                            $( '#card-subs' ).html(decodeURIComponent(unescape(card['subtypes_br'])));
+                            if(lang == 'br' && card['subtypes_br'] !== '') {
+                                $( '#card-subs' ).html(decodeURIComponent(unescape(card['subtypes_br'])));
+                            } else {
+                                $( '#card-subs' ).html(decodeURIComponent(unescape(card['subtypes_us'])));
+                            }
                         }
 
                         if (card['text'] === '') {
@@ -97,38 +108,47 @@
                             rare = 1;
                             $( '#card-set' ).html('<select id="select-set" class="t-right">');
                             $.each (card['sets'], function (set) {
-                                if(card['sets'][set]['br'] !== '') {
+                                if(lang == 'br' && card['sets'][set]['br'] !== '') {
                                     $( '#select-set' ).append('<option value="'+set+'">'+decodeURIComponent(unescape(card['sets'][set]['br']))+'</option>');
                                 } else {
                                      $( '#select-set' ).append('<option value="'+set+'">'+decodeURIComponent(unescape(card['sets'][set]['us']))+'</option>');
                                 }
                                 if(rare == 1) {
-                                    $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][set]['rarity_br'])));
+                                    $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][set]['rarity_'+lang])));
                                     rare = 0;
+                                    if(first) {
+                                        changeset = set;
+                                    }
                                 }
                             });
+                            
                             $( '#card-set' ).append('</select>');
+                            
+                            if(!first) {
+                                $( '#select-set' ).val(changeset);
+                            }
+                            
                         } else {
                             $.each (card['sets'], function (set) {
-                                if(card['sets'][set]['br'] !== '') {
+                                if(lang == 'br' && card['sets'][set]['br'] !== '') {
                                     $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['br'])));
                                 } else {
                                     $( '#card-set' ).html(decodeURIComponent(unescape(card['sets'][set]['us'])));
                                 }
-                                $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][set]['rarity_br'])));
+                                $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][set]['rarity_'+lang])));
                             });
                         }
                         
                         $( '#select-set' ).change(function() {
-                            var changeset = $( '#select-set' ).val();
-                            $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][changeset]['rarity_br'])));
+                            changeset = $( '#select-set' ).val();
+                            $( '#card-raridade' ).html(decodeURIComponent(unescape(card['sets'][changeset]['rarity_'+lang])));
                         });
                         
                     } else {
                         times += 1;
-                        if(times >= 100) {
+                        if(times >= 50) {
                             clearInterval(timer);
-                            $( '#loading' ).append(' conexão fail!');
+                            $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate(\'\', 0);\" />');
                         }
                     }
                     
@@ -146,9 +166,11 @@
                     }); 
                }
                 
+            })
+            .fail(function( jqxhr, settings, exception ) {
+                 $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate(\'\', 0);\" />');
             });
-        
-        });
+        }
     
     </script>
     
@@ -174,7 +196,7 @@
             <div id="img"></div>
             <div class="t-right lucida" id="image">ver imagem</div>
         </a>
-        <div class="t-right lucida" id="idioma">exibir em:<div id="br"></div><div id="us"></div></div> 
+        <div class="t-right lucida" id="idioma">exibir em:<div id="br" onclick="populate('br', 0);"></div><div id="us" onclick="populate('us', 0);"></div></div>
         
         <table class="lucida">
             <tr>
@@ -184,7 +206,7 @@
             <tr id="tr-custo">
                 <td class="t-left">Custo:</td>
                 <td class="t-right" id="card-custo"></td>
-            </tr>  
+            </tr>
             <tr id="tr-tipos">
                 <td class="t-left">Tipo(s):</td>
                 <td class="t-right" id="card-tipos"></td>
@@ -196,7 +218,7 @@
             <tr id="tr-texto">
                 <td class="t-left">Texto:</td>
                 <td class="t-just" id="card-texto"></td>
-            </tr> 
+            </tr>
             <tr id="tr-lealdade">
                 <td class="t-left">Lealdade:</td>
                 <td class="t-right" id="card-lealdade"></td>
@@ -235,7 +257,7 @@
     </div>
     
     <div id="loading">
-        Carregando informações...
+        <img src="imgs/loading.gif" class="img" />
     </div>
     
 </body>
