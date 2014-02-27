@@ -155,18 +155,6 @@
                     
                 }, 100);
                 
-                if($( 'body' ).height() > $(window).height()) {
-                    $( '#logo' ).css({
-                        'display' : 'none'
-                    });
-                    $( '#slogan-wrapper' ).css({
-                        'display' : 'none'
-                    }); 
-                    $( '#line2' ).css({
-                        'display' : 'none'
-                    }); 
-               }
-                
             })
             .fail(function( jqxhr, settings, exception ) {
                  $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate(\'\', 0);\" />');
@@ -183,13 +171,6 @@
     </div>
     
     <div class="line"></div>
-    
-    <div id="logo"></div>
-    <div id="slogan-wrapper">
-        <div id="slogan" class="linux">SEU HOBBY ONLINE</div>
-    </div>
-
-    <div class="line" id="line2" style="background-color:#009;"></div>
     
     <div id="main">
         
