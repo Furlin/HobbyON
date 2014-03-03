@@ -123,7 +123,17 @@
                             var change = changeset.split('_');
                             var cset = change[0];
                             var end = change[1] ? change[1] : '';
+                            
+                            $( '#card_img' ).hide();
+                            $( '#img_loader' ).show();
+                            
                             $( '#card_img' ).attr('src','http://furlin.org/__hobbyon/imgs/cards/'+lang+'/'+cset+'/'+name+end+'.jpg');
+                            
+                            $( '#card_img' ).load( function () {
+                                $( '#card_img' ).show();
+                                $( '#img_loader' ).hide();
+                            });
+                            
                         });
                         
                         $( '#card_img' ).load( function () {
