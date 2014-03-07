@@ -67,6 +67,12 @@ table, tr, td {
     padding:3px;
 }
 
+.t-sel {
+    font-size:12px;
+    line-height:20px;
+    padding:3px;
+}
+
 .t-just {
     text-align:justify;
 }
@@ -102,6 +108,12 @@ table, tr, td {
     .t-right, .t-just {
         font-size:24px;
         line-height:32px;
+    }
+    
+    .t-sel {
+        font-size:20px;
+        line-height:30px;
+        padding:3px;
     }
     
     .t-center {
@@ -155,6 +167,12 @@ table, tr, td {
         line-height:28px;
     }
     
+    .t-sel {
+        font-size:16px;
+        line-height:24px;
+        padding:3px;
+    }
+    
     .t-center {
         line-height:24px;
     }
@@ -204,6 +222,12 @@ table, tr, td {
     .t-right, .t-just {
         font-size:14px;
         line-height:22px;
+    }
+    
+    .t-sel {
+        font-size:12px;
+        line-height:20px;
+        padding:3px;
     }
     
     .t-center {

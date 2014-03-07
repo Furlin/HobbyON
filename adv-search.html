@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        
+        <meta charset="utf-8">
+        
+        <title>HobbyON</title>
+        
+        <link rel="stylesheet" type="text/css" href="css/font.css" />
+        
+        <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1" />
+        
+        <style type="text/css">
+            
+            body {
+                margin:0px;
+            }
+            
+            #top {
+                width:100%;
+                height:60px;
+                background-color:#009;
+                color:#fff;
+                font-size:48px;
+                text-align:center;
+            }
+            
+            #gear {
+                width:60px;
+                height:60px;
+                background:url(imgs/gear-48x48.png) no-repeat center;
+                float:right;
+            }
+            
+            .line {
+                width:100%;
+                height:5px;
+                background-color:#06c;
+            }
+            
+            #search-form {
+                text-align:center;
+            }
+            
+            #search {
+                width:96%;
+                border:1px #000 solid;
+                border-radius:8px;
+                font-size:48px;
+                padding:3px;
+                padding-left:6px;
+                background:url(imgs/search-70x48.png) no-repeat right #fff;
+                margin-top:5px;
+            }
+            
+            #logo {
+                width:100%;
+            }
+            
+            #slogan-wrapper {
+                width:100%;
+                background-color:#eee;
+                padding-bottom:5px;
+            }
+            
+            #slogan {
+                margin:0px auto;
+                text-align:right;
+            }
+            
+            #autocomplete {
+                list-style-type:none;
+                margin:0px;
+                padding:0px;
+                font-size:32px;
+            }
+            
+            #autocomplete li {
+                padding:5px;
+                border:1px solid #333;
+                border-top:0px;
+            }
+            
+            #auto-wrapper {
+                width:95%;
+                margin-top:-3px;
+                margin-left:auto;
+                margin-right:auto;
+                display:none;
+            }
+            
+            .blue {
+                background-color:#06f;
+            }
+            
+            .black {
+                background-color:#000;
+            }
+            
+            .green {
+                background-color:#090;
+            }
+            
+            .red {
+                background-color:#c00;
+            }
+            
+            .white {
+                background-color:#fff;
+            }
+            
+            .gold {
+                background-color:#d4ad36;
+            }
+            
+            .art {
+                background-color:#ccc;
+            }
+            
+            .land {
+                background-color:#ff9;
+            }
+            
+            .color {
+                height:30px;
+                width:20px;
+                margin-top:-6px;
+                margin-right:5px;
+                vertical-align:middle;
+            }
+            
+            #menu {
+                width:96%;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            
+            #menu-list {
+                list-style-type:none;
+                padding:0px;
+                margin:0px;
+                font-size:32px;
+            }
+
+            #menu-list li {
+                border-bottom:1px solid #333;
+                padding:10px 0px;
+            }
+            
+            #color-list, #type-list, #rare-list, #format-list {
+                list-style-type:none;
+                margin:0px;
+                padding:0px;
+                display:none;
+            }
+            
+            .form-block {
+                border:1px solid #999;
+                width:96%;
+                margin:0 auto;
+                margin-top:5px;
+                text-align:left;
+                background-color:#eeeeee;
+                font-size:32px;
+            }
+            
+            .mini, .mini-text {
+                width: 40px;
+                font-size: 20px;
+                margin-left: 5px;
+            }
+            
+            .mini-text {
+                height: 26px;
+                text-align: center;
+                margin-left: 0px;
+            }
+            
+            .mini-title {
+                margin-left: 5px;
+            }
+            
+            .submit {
+                width: 96%;
+                margin:0 auto;
+                margin-top:5px;
+                font-size:32px;
+            }
+            
+            .form-block li {
+                padding:4px 0px;
+            }
+            
+            .block_title {
+                padding-left:20px;
+                margin-left:5px;
+            }
+            
+            .fff {
+                background-color:#fff;
+            }
+            
+            .big-label {
+                font-size:75%;
+            }
+            
+            @media (min-width:600px) {
+                
+                #top {
+                    font-size:60px;
+                    height:76px;
+                }
+                
+                #gear {
+                    width:76px;
+                    height:76px;
+                    background:url(imgs/gear-60x60.png) no-repeat center;
+                }
+                
+                #search {
+                    width:97%;
+                    font-size:64px;
+                    background:url(imgs/search-90x64.png) no-repeat right #fff;
+                }
+                
+                #logo {
+                    height:126px;
+                    background:url(imgs/logo-480x96.png) no-repeat center #eee;
+                }
+                
+                #slogan {
+                    font-size:36px;
+                    width:480px;
+                }
+                
+                .color {
+                    height:48px;
+                    width:28px;
+                    margin-top:-10px;
+                }
+                
+                #autocomplete {
+                    font-size:48px;
+                }
+                
+                #menu-list {
+                    font-size:48px;
+                }
+                
+                .form-block, .submit {
+                    font-size:48px;
+                }
+                
+                .mini, .mini-text {
+                    width: 75px;
+                    font-size: 48px;
+                }
+
+                .mini-text {
+                    height: 64px;
+                }
+                
+                .block-title {
+                    padding:5px;
+                    padding-left:50px;
+                    margin-left:5px;
+                }
+                
+                .arrow {
+                    background:url(imgs/arrow-32x32.png) no-repeat left;
+                }
+                
+                .arrow_down {
+                    background:url(imgs/arrow-down-32x32.png) no-repeat left;
+                }
+                
+            }
+            
+            @media (min-width:480px) and (max-width:599px) {
+                
+                #top {
+                    font-size:48px;
+                    height:60px;
+                }
+                
+                #gear {
+                    width:60px;
+                    height:60px;
+                    background:url(imgs/gear-48x48.png) no-repeat center;
+                }
+                
+                #search {
+                    width:96%;
+                    font-size:48px;
+                    background:url(imgs/search-70x48.png) no-repeat right #fff;
+                }
+                
+                #logo {
+                    height:102px;
+                    background:url(imgs/logo-384x77.png) no-repeat center #eee;
+                }
+                                
+                #slogan {
+                    font-size:24px;
+                    width:384px;
+                }
+                
+                .color {
+                    height:32px;
+                    width:20px;
+                    margin-top:-6px;
+                }
+                
+                #autocomplete {
+                    font-size:32px;
+                }
+                
+                #menu-list {
+                    font-size:32px;
+                }
+                
+                .form-block, .submit {
+                    font-size:32px;
+                }
+                
+                .mini, .mini-text {
+                    width: 55px;
+                    font-size: 32px;
+                }
+
+                .mini-text {
+                    height: 43px;
+                }
+                
+                .block-title {
+                    padding:5px;
+                    padding-left:28px;
+                    margin-left:5px;
+                }
+                
+                .arrow {
+                    background:url(imgs/arrow-24x24.png) no-repeat left;
+                }
+                
+                .arrow_down {
+                    background:url(imgs/arrow-down-24x24.png) no-repeat left;
+                }
+                
+            }
+            
+            @media (max-width:479px) {
+                
+                #top {
+                    font-size:32px;
+                    height:40px;
+                }
+                
+                #gear {
+                    width:40px;
+                    height:40px;
+                    background:url(imgs/gear-32x32.png) no-repeat center;
+                }
+                
+                #search {
+                    width:96%;
+                    font-size:32px;
+                    background:url(imgs/search-47x32.png) no-repeat right #fff;
+                }
+                
+                #logo {
+                    height:71px;
+                    background:url(imgs/logo-256x51.png) no-repeat center #eee;
+                }
+                                
+                #slogan {
+                    font-size:16px;
+                    width:256px;
+                }
+                
+                .color {
+                    height:24px;
+                    width:16px;
+                    margin-top:-4px;
+                }
+                
+                #autocomplete {
+                    font-size:24px;
+                }
+                
+                #menu-list {
+                    font-size:24px;
+                }
+                
+                .form-block, .submit {
+                    font-size:24px;
+                }
+                
+                .block-title {
+                    padding:5px;
+                    padding-left:20px;
+                    margin-left:5px;
+                }
+                
+                .arrow {
+                    background:url(imgs/arrow-16x16.png) no-repeat left;
+                }
+                
+                .arrow_down {
+                    background:url(imgs/arrow-down-16x16.png) no-repeat left;
+                }
+                
+            }
+            
+        </style>
+        
+        <script type="text/javascript">
+        
+            function showhide(block) {
+                if(document.getElementById(block+'-list').style.display == 'block') {
+                    document.getElementById(block+'-list').style.display = 'none';
+                    document.getElementById(block+'-title').classList.add('arrow');
+                    document.getElementById(block+'-title').classList.remove('arrow_down');
+                } else {
+                    document.getElementById(block+'-list').style.display = 'block';
+                    document.getElementById(block+'-title').classList.remove('arrow');
+                    document.getElementById(block+'-title').classList.add('arrow_down');
+                }
+            }
+        
+        </script>
+        
+    </head>
+    
+    <body>
+        
+        <div id="top" class="linux">
+            BUSCA<div id="gear"></div>
+        </div>
+        
+        <div class="line"></div>
+        
+        <div id="logo"></div>
+        <div id="slogan-wrapper">
+            <div id="slogan" class="linux">SEU HOBBY ONLINE</div>
+        </div>
+
+        <div class="line" style="background-color:#009;"></div>
+            
+        <div id="main">
+            
+            <form id="search-form" action="adv-result.html">
+                
+                <input placeholder="nome da carta" name="text" id="search" class="linux" />
+                
+                <div id="color-block" class="form-block">
+                    
+                    <div class="block-title linux arrow fff" id="color-title" onclick="showhide('color')">Cores</div>
+                    
+                    <ul id="color-list" class="linux form">
+                        <li style="border-top:1px solid #999;"  class="fff">
+                            <input type="checkbox" name="blue" id="blue" />
+                            <label for="blue">Azul</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="green" id="green" />
+                            <label for="green">Verde</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="white" id="white" />
+                            <label for="white">Branca</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="black" id="black" />
+                            <label for="black">Preta</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="red" id="red" />
+                            <label for="red">Vermelha</label>
+                        </li>
+                        <li style="border-bottom:1px solid #999;" class="fff">
+                            <input type="checkbox" name="art" id="art" />
+                            <label for="art">Incolor</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="multi" id="multi" checked />
+                            <label for="multi">Multi coloridas</label>
+                        </li>
+                        <li style="border-bottom:1px solid #999;">
+                            <input type="checkbox" name="mono" id="mono" checked />
+                            <label for="mono">Mono coloridas</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="exclude" id="exclude" />
+                            <label for="exclude" class="big-label">Excluir cores não selecionadas</label>
+                        </li>
+                    </ul>
+                </div>
+                    
+                <div id="type-block" class="form-block">
+                    
+                    <div class="block-title linux arrow fff" id="type-title" onclick="showhide('type')">Tipos</div>
+                    
+                    <ul id="type-list" class="linux form">
+                        <li style="border-top:1px solid #999;"  class="fff">
+                            <input type="checkbox" name="type-art" id="type-art" />
+                            <label for="type-art">Artefato</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="type-cre" id="type-cre" />
+                            <label for="type-cre">Criatura</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="type-enc" id="type-enc" />
+                            <label for="type-enc">Encantamento</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="type-fei" id="type-fei" />
+                            <label for="type-fei">Feitiço</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="type-mag" id="type-mag" />
+                            <label for="type-mag">Magica Instantânea</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="type-pla" id="type-pla" />
+                            <label for="type-pla">Planeswalker</label>
+                        </li>
+                        <li style="border-bottom:1px solid #999;" class="fff">
+                            <input type="checkbox" name="type-ter" id="type-ter" />
+                            <label for="type-ter">Terreno</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="type-all" id="type-all" />
+                            <label for="type-all" class="big-label">Todos os tipos na mesma carta</label>
+                        </li>
+                    </ul>
+                    
+                    
+                </div>
+                
+                <div id="rare-block" class="form-block">
+                    
+                    <div class="block-title linux arrow fff" id="rare-title" onclick="showhide('rare')">Raridade</div>
+                    
+                    <ul id="rare-list" class="linux form">
+                        <li style="border-top:1px solid #999;"  class="fff">
+                            <input type="checkbox" name="rare-com" id="rare-com" />
+                            <label for="rare-com">Comum</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="rare-inc" id="rare-inc" />
+                            <label for="rare-inc">Incomum</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="rare-rar" id="rare-rar" />
+                            <label for="rare-rar">Rara</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="rare-mit" id="rare-mit" />
+                            <label for="rare-mit">Mítica</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="rare-bas" id="rare-bas" />
+                            <label for="rare-bas">Terreno Básico</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="rare-esp" id="rare-esp" />
+                            <label for="rare-esp">Especial</label>
+                        </li>
+                    </ul>
+                    
+                    
+                </div>
+                
+                <div id="format-block" class="form-block">
+                    
+                    <div class="block-title linux arrow fff" id="format-title" onclick="showhide('format')">Formato</div>
+                    
+                    <ul id="format-list" class="linux form">
+                        <li style="border-top:1px solid #999;"  class="fff">
+                            <input type="checkbox" name="form-t1" id="form-t1" />
+                            <label for="form-t1">Vintage (T1)</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="form-t15" id="form-t15" />
+                            <label for="form-t15">Legacy (T1.5)</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="form-t1x" id="form-t1x" />
+                            <label for="form-t1x">Extended (T1.x)</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="form-t2" id="form-t2" />
+                            <label for="form-t2">Standard (T2)</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="form-com" id="form-com" />
+                            <label for="form-com">Commander</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="form-mod" id="form-mod" />
+                            <label for="form-mod">Modern</label>
+                        </li>
+                    </ul>
+                    
+                    
+                </div>
+                
+                <div class="form-block linux">
+                    <span class="mini-title">Poder</span>
+                    <select name="power-sel" class="lucida mini" >
+                        <option value=">=">&ge;</option>
+                        <option value=">">&gt;</option>
+                        <option value="=">=</option>
+                        <option value="<">&lt;</option>
+                        <option value="<=">&le;</option>
+                    </select>
+                    <input type="text" class="lucida mini mini-text" name="power" placeholder="0" />
+                </div>
+                
+                <div class="form-block linux">
+                    <span class="mini-title">Resistência</span>
+                    <select name="resist-sel" class="lucida mini" >
+                        <option value=">=">&ge;</option>
+                        <option value=">">&gt;</option>
+                        <option value="=">=</option>
+                        <option value="<">&lt;</option>
+                        <option value="<=">&le;</option>
+                    </select>
+                    <input type="text" class="lucida mini mini-text" name="resist" placeholder="0" />
+                </div>
+                
+                <div class="form-block linux">
+                    <span class="mini-title">Lealdade</span>
+                    <select name="loyal-sel" class="lucida mini" >
+                        <option value=">=">&ge;</option>
+                        <option value=">">&gt;</option>
+                        <option value="=">=</option>
+                        <option value="<">&lt;</option>
+                        <option value="<=">&le;</option>
+                    </select>
+                    <input type="text" class="lucida mini mini-text" name="loyal" placeholder="0" />
+                </div>
+                
+                <input type="submit" class="submit" class="linux" />
+                
+            </form>
+            
+        </div>
+        
+    </body>
+    
+</html>

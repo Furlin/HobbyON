@@ -26,8 +26,9 @@
         
         var id = document.location.search.substr(4);
         
-        //var changeset = null;
-        
+        var last = 0;
+        var last_lang = '';
+                
         if (id > 100000) {
             id -= 100000;
         }
@@ -42,6 +43,26 @@
         });
         
         function populate(lang, first) {
+            
+            if(new Date().getTime() <= 300 - last) return;
+            
+            if(last_lang == lang) return;
+            
+            if(lang == '') {
+                if (last_lang == '') {
+                    lang = 'br';
+                } else {
+                    lang = last_lang;
+                }
+            }    
+            
+            if(lang == 'br') {
+                $( '#us' ).show();
+                $( '#br' ).hide();
+            } else {
+                $( '#br' ).show();
+                $( '#us' ).hide();
+            }
             
                 $.getScript( "http://furlin.org/__hobbyon?id="+id)
                 .done( function( script, textStatus ) {
@@ -107,7 +128,7 @@
                         
                         if($.map(card['sets'], function(n, i) {return i;}).length > 1) {
                             rare = 1;
-                            $( '#card-set' ).html('<select id="select-set" class="t-right">');
+                            $( '#card-set' ).html('<select id="select-set" class="t-sel">');
                             $.each (card['sets'], function (set) {
                                 if(lang == 'br' && card['sets'][set]['br'] !== '') {
                                     $( '#select-set' ).append('<option value="'+set+'">'+decodeURIComponent(unescape(card['sets'][set]['br']))+'</option>');

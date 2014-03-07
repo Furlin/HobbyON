@@ -1,0 +1,105 @@
+.card {
+    padding-top: 5px;
+    height: 105px;
+    width: 96%;
+    margin-left: 5px;
+    border-bottom: 1px solid #999;
+}
+    
+.card-img {
+    height: 100px;
+    float: left;
+    margin-right: 6px;
+}
+
+.card-name {
+    font-size: 16px;
+    margin-top: 0px;
+    white-space:nowrap; 
+    overflow:hidden;
+    text-overflow: clip;
+}
+
+.card-name2 {
+    margin-top: 2px;
+    font-size: 15px;
+    color: #333;
+    white-space:nowrap; 
+    overflow:hidden;
+    text-overflow: clip;
+}
+
+.card-price {
+    margin-top: 1px;
+    font-size: 12px;
+}
+
+.card-set, .card-set select {
+    margin-top: 1px;
+    font-size: 16px;
+}
+
+@media (min-width:600px) {
+    .card {
+        height: 135px;
+    }
+    .card-img {
+        height: 130px;
+    }
+    .card-name {
+        font-size: 20px;
+    }
+    .card-name2 {
+        font-size: 19px;
+    }
+    .card-price {
+        font-size: 16px;
+    }
+    .card-set, .card-set select {
+        font-size: 20px;
+    }
+}
+
+@media (min-width:480px) and (max-width:599px) {
+    .card {
+        height: 120px;
+    }
+
+    .card-img {
+        height: 115px;
+    }
+    .card-name {
+        font-size: 18px;
+    }
+    .card-name2 {
+        font-size: 17px;
+    }
+    .card-price {
+        font-size: 14px;
+    }
+    .card-set, .card-set select {
+        font-size: 18px;
+    }
+}
+
+@media (max-width:479px) {
+    .card {
+        height: 105px;
+    }
+
+    .card-img {
+        height: 100px;
+    }
+    .card-name {
+        font-size: 16px;
+    }
+    .card-name2 {
+        font-size: 15px;
+    }
+    .card-price {
+        font-size: 12px;
+    }
+    .card-set, .card-set select {
+        font-size: 16px;
+    }
+}

@@ -28,6 +28,7 @@ $(function () {
 
     // Initialize autocomplete with local lookup:
     $('#search').autocomplete({
+        triggerSelectOnValidInput: false,
         lookup: cardsArray,
         minChars: 3,
         onSelect: function (suggestion) {

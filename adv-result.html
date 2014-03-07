@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>HobbyON</title>
+    
+    <link href="css/base.css" rel="stylesheet" type="text/css" />
+    <link href="css/font.css" rel="stylesheet" type="text/css" />
+    <link href="css/logo.css" rel="stylesheet" type="text/css" />
+    <link href="css/info.css" rel="stylesheet" type="text/css" />
+    <link href="css/imgs.css" rel="stylesheet" type="text/css" />
+    <link href="css/card.css" rel="stylesheet" type="text/css" />
+    
+    <style type="text/css">
+    
+        #main {
+            display: none;
+        }
+        
+    </style>
+    
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    
+    <meta charset="utf-8" />
+    
+    <script>
+        
+        var form = document.location.search;
+        
+        var i = 0;
+        
+        var viewport = {
+            width : $(window).width(),
+            height : $(window).height()
+        };
+        
+        $( document ).ready(function() {
+            populate('br',0);
+        });
+        
+        function populate(lang, startid) {
+            
+            if(lang == 0) lang = 'br';
+            
+            $.getScript("http://furlin.org/__hobbyon/adv.php"+form+"&start="+startid)
+            .done( function( script, textStatus ) {
+
+                    var times = 0;
+                    var timer = setInterval( function(){
+
+                    if(window.cards !== undefined) {
+                        
+                        $( '#loading' ).hide();
+                        $( '#main' ).show();
+                        
+                        if(startid != 0) {
+                            $( '#mais'+startid).hide(); 
+                        }
+                        
+                        clearInterval(timer);
+                        
+                        var n = 0;
+                        
+                        $.each (cards, function (card) {
+                            
+                                n += 1;
+                                
+                                if(n == 10) {
+                                    startid = card;
+                                }
+                            
+                                if(n > 10) {
+                                    $( '#main' ).append('<div class="mais" onclick="populate(0, '+startid+')" id="mais'+startid+'">MAIS</div>');
+                                    return(false);
+                                }
+                            
+                                i += 1;
+
+                                var name = decodeURIComponent(unescape(cards[card]['name_us']));
+                                var name_img = decodeURIComponent(unescape(cards[card]['name_img']));
+                                var nome = decodeURIComponent(unescape(cards[card]['name_br']));
+                                var setname = decodeURIComponent(unescape(cards[card]['set']));
+                            
+                                if(nome == '') {
+                                    nome = name;
+                                }
+                            
+                                name_img = name_img.replace(/Æ/g, 'ae');
+                                $( '#main' ).append('<div class="card lucida" onclick="location.href=\'card-info.html?id='+card+'\'"><img src="http://furlin.org/__hobbyon/imgs/cards/'+lang+'/'+cards[card]['code']+'/'+name_img+'.jpg" class="card-img" />'+'<div class="card-name">'+nome+'</div>'+'<div class="card-name2">'+setname+'</div>'+'<div class="card-price"><table><tr><td class="t-center">Menor</td><td class="t-center">Médio</td><td class="t-center">Maior</td></tr><tr><td><span style="background-color:#cfa;" class="bg" id="card-low">R$ '+"10,00"+'</span></td><td><span style="background-color:#ff9;" class="bg" id="card-mid">R$ '+"11,00"+'</span></td><td><span style="background-color:#fcc;" class="bg" id="card-hi">R$ '+"12,00"+'</span></td></tr></table></div>');
+                        });
+                    } else {
+                        times += 1;
+                        if(times >= 100) {
+                            clearInterval(timer);
+                            $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate();\" />');
+                            //$( '#loading').html('<a href="'+"http://furlin.org/__hobbyon/adv.php"+form+"&start="+start+'" >teste</a>');
+                        }
+                    }
+                    
+                }, 100);
+                
+            })
+            .fail(function( jqxhr, settings, exception ) {
+                $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate();\" />');
+            });
+        }
+    
+    </script>
+    
+</head>
+<body>
+    
+    <div id="top" class="linux">
+        <div id="link-menu">MENU<div id="top-menu"></div></div>
+    </div>
+    
+    <div class="line"></div>
+    <div id="main"></div>
+    
+    <div id="loading">
+        <img src="imgs/loading.gif" class="img" />
+    </div>
+    
+</body>
+</html>

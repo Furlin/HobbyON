@@ -57,6 +57,14 @@
                 }
             }
             
+            if(lang == 'br') {
+                $( '#us' ).show();
+                $( '#br' ).hide();
+            } else {
+                $( '#br' ).show();
+                $( '#us' ).hide();
+            }
+            
             last = new Date().getTime();
             
             last_lang = lang;
@@ -66,10 +74,8 @@
             
                 var times = 0;
                 var timer = setInterval( function(){
-                    
                     if(window.card !== undefined) {
                         clearInterval(timer);
-                        
                         
                         $( '#img_loader' ).show();
                         $( '#card_img' ).hide();
