@@ -40,6 +40,11 @@
         
         function populate(lang, startid) {
             
+            if(startid != 0) {
+                $( '#mais'+startid).hide();
+                $( '#main' ).append('<div class="mais linux" id="loading'+startid+'">Carregando... </div>');
+            }
+            
             if(lang == 0) lang = 'br';
             
             $.getScript("http://furlin.org/__hobbyon/adv.php"+form+"&start="+startid)
@@ -54,7 +59,7 @@
                         $( '#main' ).show();
                         
                         if(startid != 0) {
-                            $( '#mais'+startid).hide(); 
+                            $( '#loading'+startid).hide();
                         }
                         
                         clearInterval(timer);
@@ -70,7 +75,7 @@
                                 }
                             
                                 if(n > 10) {
-                                    $( '#main' ).append('<div class="mais" onclick="populate(0, '+startid+')" id="mais'+startid+'">MAIS</div>');
+                                    $( '#main' ).append('<div class="mais linux" onclick="populate(0, '+startid+')" id="mais'+startid+'">Mostrar mais resultados.</div>');
                                     return(false);
                                 }
                             
