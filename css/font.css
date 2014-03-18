@@ -8,6 +8,15 @@
 }
 
 @font-face{
+    font-family: "LinuxB"; 
+    src: url('../font/LinBiolinum_RB.otf') format('opentype');
+}
+
+.linuxb {
+    font-family: "LinuxB";
+}
+
+@font-face{
     font-family: "Lucida"; 
     src: url('../font/LucidaGrande.ttf') format('truetype');
 }
