@@ -35,7 +35,7 @@ body {
     color:#fff;
 }
 
-#gear, #top-menu {
+#top-menu {
     float:right;
 }
 
@@ -57,12 +57,6 @@ body {
         line-height:72px;
     }
     
-    #gear {
-        width:72px;
-        height:72px;
-        background:url(../imgs/gear-60x60.png) no-repeat center;
-    }
-    
     #top-menu {
         width:72px;
         height:72px;
@@ -79,12 +73,6 @@ body {
         line-height:60px;
     }
     
-    #gear {
-        width:60px;
-        height:60px;
-        background:url(../imgs/gear-48x48.png) no-repeat center;
-    }
-    
     #top-menu {
         width:60px;
         height:60px;
@@ -99,12 +87,6 @@ body {
         font-size:40px;
         height:48px;
         line-height:48px;
-    }
-    
-    #gear {
-        width:48px;
-        height:48px;
-        background:url(../imgs/gear-32x32.png) no-repeat center;
     }
     
     #top-menu {

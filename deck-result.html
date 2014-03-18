@@ -9,7 +9,7 @@
     <link href="css/logo.css" rel="stylesheet" type="text/css" />
     <link href="css/info.css" rel="stylesheet" type="text/css" />
     <link href="css/imgs.css" rel="stylesheet" type="text/css" />
-    <link href="css/card.css" rel="stylesheet" type="text/css" />
+    <link href="css/dres.css" rel="stylesheet" type="text/css" />
     
     <style type="text/css">
     
@@ -87,7 +87,7 @@
                                 var tour = decodeURIComponent(unescape(decks[card]['tour']));
                                 var player = decodeURIComponent(unescape(decks[card]['player']));
                             
-                                $( '#main' ).append('<div class="card lucida" onclick="location.href=\'deck.html?id='+card+'\'"><div class="card-name">'+deck+'</div>'+'<div class="card-name2">'+tour+'</div>'+'<div class="card-name2">'+player+'</div>');
+                                $( '#main' ).append('<div class="deck lucida" onclick="location.href=\'deck.html?id='+card+'\'"><div class="deck-name">'+deck+'</div>'+'<div class="tour">'+tour+'</div>'+'<div class="player">'+player+'</div>');
                         });
                     } else {
                         times += 1;
@@ -112,7 +112,8 @@
 <body>
     
     <div id="top" class="linux">
-        <div id="link-menu">MENU<div id="top-menu"></div></div>
+        <div id="top-menu" onclick='location.href="index.html"'></div>
+        <div id="link-menu" onclick='location.href="index.html"'>MENU</div>
     </div>
     
     <div class="line"></div>

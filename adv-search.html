@@ -23,13 +23,13 @@
                 background-color:#009;
                 color:#fff;
                 font-size:48px;
-                text-align:center;
+                text-align:right;
             }
             
             #gear {
                 width:60px;
                 height:60px;
-                background:url(imgs/gear-48x48.png) no-repeat center;
+                background:url(imgs/menu-60x60.png) no-repeat center;
                 float:right;
             }
             
@@ -220,7 +220,7 @@
                 #gear {
                     width:76px;
                     height:76px;
-                    background:url(imgs/gear-60x60.png) no-repeat center;
+                    background:url(imgs/menu-72x72.png) no-repeat center;
                 }
                 
                 #search {
@@ -297,7 +297,7 @@
                 #gear {
                     width:60px;
                     height:60px;
-                    background:url(imgs/gear-48x48.png) no-repeat center;
+                    background:url(imgs/menu-60x60.png) no-repeat center;
                 }
                 
                 #search {
@@ -374,7 +374,7 @@
                 #gear {
                     width:40px;
                     height:40px;
-                    background:url(imgs/gear-32x32.png) no-repeat center;
+                    background:url(imgs/menu-48x48.png) no-repeat center;
                 }
                 
                 #search {
@@ -429,6 +429,8 @@
             
         </style>
         
+        <link href="css/base.css" rel="stylesheet" type="text/css" />
+        
         <script type="text/javascript">
         
             function showhide(block) {
@@ -449,9 +451,10 @@
     
     <body>
         
-        <div id="top" class="linux">
-            BUSCA<div id="gear"></div>
-        </div>
+    <div id="top" class="linux">
+        <div id="top-menu" onclick='location.href="index.html"'></div>
+        <div id="link-menu" onclick='location.href="index.html"'>MENU</div>
+    </div>
         
         <div class="line"></div>
         

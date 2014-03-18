@@ -1,0 +1,28 @@
+.deck {
+    padding: 5px;
+    width: 96%;
+    margin-left: 5px;
+    border-bottom: 1px solid #999;
+}
+    
+.deck-name {
+    font-weight: bold;
+}
+
+@media (min-width:600px) {
+    .tour, .player, .deck-name {
+        font-size: 28px;
+    }
+}
+
+@media (min-width:480px) and (max-width:599px) {
+    .tour, .player, .deck-name {
+        font-size: 22px;
+    }
+}
+
+@media (max-width:479px) {
+    .tour, .player, .deck-name {
+        font-size: 16px;
+    }
+}
