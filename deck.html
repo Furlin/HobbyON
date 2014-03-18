@@ -91,24 +91,23 @@
                     
                     if(window.deck !== undefined) {
                         clearInterval(timer);
-                        
                         $( '#main' ).css({ 'display' : 'block' });
                         $( '#loading' ).css({ 'display' : 'none' });
                         
                         
-                        $( '#main' ).append('<div class="deckname linux black">'+decodeURIComponent(deck_name)+'</div>');
+                        $( '#main' ).append('<div class="deckname linux black">'+unescape(deck_name)+'</div>');
                         if(tour_info != '') {
-                            $( '#main' ).append('<div class="tour linux">'+decodeURIComponent(tour_info)+'</div>');
+                            $( '#main' ).append('<div class="tour linux">'+unescape(tour_info)+'</div>');
                         }
                         if(player_name != '') {
-                            $( '#main' ).append('<div class="player linux">'+decodeURIComponent(player_name)+'</div>');
+                            $( '#main' ).append('<div class="player linux">'+unescape(player_name)+'</div>');
                         }
 
                         $( '#main' ).append('<div class="bline"></div><div class="black linux deck">MAIN DECK ('+deck+' CARTAS)</div><br />');
                         if(lands['total']) {
                             var lands_ul = '<ul class="card-list linux">';
                             $.each (lands['cards'], function (card) {
-                                lands_ul += '<li onclick="showcard(\''+lands['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(lands['cards'][card]['name'+lang])+'\','+lands['cards'][card]['id']+');">'+lands['cards'][card]['num']+' '+decodeURIComponent(lands['cards'][card]['name'+lang])+'</li>';
+                                lands_ul += '<li onclick="showcard(\''+lands['cards'][card]['img']+'\',\''+lang+'\',\''+unescape(lands['cards'][card]['name'+lang])+'\','+lands['cards'][card]['id']+');">'+lands['cards'][card]['num']+' '+unescape(lands['cards'][card]['name'+lang])+'</li>';
                             });
                             lands_ul += '<hr><li><span class="black">'+lands['total']+' Terreno(s)</span><br /><br /></li>';
                             $( '#main' ).append(lands_ul);
@@ -116,7 +115,7 @@
                         if(creatures['total']) {
                             var creatures_ul = '<ul class="card-list linux">';
                             $.each (creatures['cards'], function (card) {
-                                creatures_ul += '<li onclick="showcard(\''+creatures['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(creatures['cards'][card]['name'+lang])+'\','+creatures['cards'][card]['id']+');">'+creatures['cards'][card]['num']+' '+decodeURIComponent(creatures['cards'][card]['name'+lang])+'</li>';
+                                creatures_ul += '<li onclick="showcard(\''+creatures['cards'][card]['img']+'\',\''+lang+'\',\''+unescape(creatures['cards'][card]['name'+lang])+'\','+creatures['cards'][card]['id']+');">'+creatures['cards'][card]['num']+' '+unescape(creatures['cards'][card]['name'+lang])+'</li>';
                             });
                             creatures_ul += '<hr><li><span class="black">'+creatures['total']+' Criatura(s)</span><br /><br /></li>';
                             $( '#main' ).append(creatures_ul);
@@ -124,7 +123,7 @@
                         if(plane['total']) {
                             var plane_ul = '<ul class="card-list linux">';
                             $.each (plane['cards'], function (card) {
-                                plane_ul += '<li onclick="showcard(\''+plane['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(plane['cards'][card]['name'+lang])+'\','+plane['cards'][card]['id']+');">'+plane['cards'][card]['num']+' '+decodeURIComponent(plane['cards'][card]['name'+lang])+'</li>';
+                                plane_ul += '<li onclick="showcard(\''+plane['cards'][card]['img']+'\',\''+lang+'\',\''+unescape(plane['cards'][card]['name'+lang])+'\','+plane['cards'][card]['id']+');">'+plane['cards'][card]['num']+' '+unescape(plane['cards'][card]['name'+lang])+'</li>';
                             });
                             plane_ul += '<hr><li><span class="black">'+plane['total']+' Planewalker(s)</span><br /><br /></li>';
                             $( '#main' ).append(plane_ul);
@@ -132,7 +131,7 @@
                         if(other['total']) {
                             var other_ul = '<ul class="card-list linux">';
                             $.each (other['cards'], function (card) {
-                                other_ul += '<li onclick="showcard(\''+other['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(other['cards'][card]['name'+lang])+'\','+other['cards'][card]['id']+');">'+other['cards'][card]['num']+' '+decodeURIComponent(other['cards'][card]['name'+lang])+'</li>';
+                                other_ul += '<li onclick="showcard(\''+other['cards'][card]['img']+'\',\''+lang+'\',\''+unescape(other['cards'][card]['name'+lang])+'\','+other['cards'][card]['id']+');">'+other['cards'][card]['num']+' '+unescape(other['cards'][card]['name'+lang])+'</li>';
                             });
                             other_ul += '<hr><li><span class="black">'+other['total']+' Outra(s) Mágica(s)</span><br /><br /></li>';
                             $( '#main' ).append(other_ul);
@@ -141,7 +140,7 @@
                             var side_ul = '<div class="main linux deck side">SIDE ('+side['total']+' CARTAS)</div>';
                             side_ul += '<ul class="card-list linux side">';
                             $.each (side['cards'], function (card) {
-                                side_ul += '<li onclick="showcard(\''+side['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(side['cards'][card]['name'+lang])+'\','+side['cards'][card]['id']+');">'+side['cards'][card]['num']+' '+decodeURIComponent(side['cards'][card]['name'+lang])+'</li>';
+                                side_ul += '<li onclick="showcard(\''+side['cards'][card]['img']+'\',\''+lang+'\',\''+unescape(side['cards'][card]['name'+lang])+'\','+side['cards'][card]['id']+');">'+side['cards'][card]['num']+' '+unescape(side['cards'][card]['name'+lang])+'</li>';
                             });
                             $( '#main' ).append(side_ul);
                         }
