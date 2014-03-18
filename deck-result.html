@@ -49,13 +49,13 @@
             
             $( '#loading' ).html('<img src="imgs/loading.gif" class="img" />');
             
-            $.getScript("http://furlin.org/__hobbyon/adv.php"+form+"&start="+startid)
+            $.getScript("http://furlin.org/__hobbyon/deck-res.php"+form+"&start="+startid)
             .done( function( script, textStatus ) {
 
                     var times = 0;
                     var timer = setInterval( function(){
 
-                    if(window.cards !== undefined) {
+                    if(window.decks !== undefined) {
                         
                         $( '#loading' ).hide();
                         $( '#main' ).show();
@@ -68,7 +68,7 @@
                         
                         var n = 0;
                         
-                        $.each (cards, function (card) {
+                        $.each (decks, function (card) {
                             
                                 n += 1;
                                 
@@ -83,17 +83,11 @@
                             
                                 i += 1;
 
-                                var name = decodeURIComponent(unescape(cards[card]['name_us']));
-                                var name_img = decodeURIComponent(unescape(cards[card]['name_img']));
-                                var nome = decodeURIComponent(unescape(cards[card]['name_br']));
-                                var setname = decodeURIComponent(unescape(cards[card]['set']));
+                                var deck = decodeURIComponent(unescape(decks[card]['deck']));
+                                var tour = decodeURIComponent(unescape(decks[card]['tour']));
+                                var player = decodeURIComponent(unescape(decks[card]['player']));
                             
-                                if(nome == '') {
-                                    nome = name;
-                                }
-                            
-                                name_img = name_img.replace(/Æ/g, 'ae');
-                                $( '#main' ).append('<div class="card lucida" onclick="location.href=\'card-info.html?id='+card+'\'"><img src="http://furlin.org/__hobbyon/imgs/cards/'+lang+'-mini/'+cards[card]['code']+'/'+name_img+'.jpg" class="card-img" />'+'<div class="card-name">'+nome+'</div>'+'<div class="card-name2">'+setname+'</div>'+'<div class="card-price"><table><tr><td class="t-center">Menor</td><td class="t-center">Médio</td><td class="t-center">Maior</td></tr><tr><td><span style="background-color:#cfa;" class="bg" id="card-low">R$ '+"10,00"+'</span></td><td><span style="background-color:#ff9;" class="bg" id="card-mid">R$ '+"11,00"+'</span></td><td><span style="background-color:#fcc;" class="bg" id="card-hi">R$ '+"12,00"+'</span></td></tr></table></div>');
+                                $( '#main' ).append('<div class="card lucida" onclick="location.href=\'deck.html?id='+card+'\'"><div class="card-name">'+deck+'</div>'+'<div class="card-name2">'+tour+'</div>'+'<div class="card-name2">'+player+'</div>');
                         });
                     } else {
                         times += 1;

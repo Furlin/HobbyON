@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>HobbyON</title>
+    
+    <link href="css/base.css" rel="stylesheet" type="text/css" />
+    <link href="css/font.css" rel="stylesheet" type="text/css" />
+    <link href="css/logo.css" rel="stylesheet" type="text/css" />
+    <link href="css/info.css" rel="stylesheet" type="text/css" />
+    <link href="css/imgs.css" rel="stylesheet" type="text/css" />
+    <link href="css/deck.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+    
+        #main, #divimg {
+            display: none;
+        }
+        
+    </style>
+    
+    <script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+    
+    <meta charset="utf-8" />
+    
+    <script>
+        
+        var id = document.location.search.substr(4);
+        
+        var last = 0;
+        var last_lang = '';
+                
+        if (id > 100000) {
+            id -= 100000;
+        }
+        
+        var viewport = {
+            width : $(window).width(),
+            height : $(window).height()
+        };
+        
+        $( document ).ready(function() {
+            populate('br', 1);
+        });
+        
+        function closeimg () {
+            $( '#divimg' ).hide();
+            $( '#main' ).show();
+        }
+        
+        function showcard(img, lang, name, id) {
+            img = img.replace(/Æ/g, 'ae');
+            $( "#imgc" ).attr('src','http://furlin.org/__hobbyon/imgs/cards/'+lang+'/'+img+'.jpg');
+            $( '#cardname' ).html(name);
+            $( '#main' ).hide();
+            $( '#divimg' ).show();
+            $( '#open' ).click( function () {
+                window.location.href = 'card-info.html?id='+id;
+            });
+        }
+        
+        function populate(lang, first) {
+            
+            if(new Date().getTime() <= 300 - last) return;
+            
+            if(last_lang == lang) return;
+            
+            $( '#loading' ).html('<img src="imgs/loading.gif" class="img" />');
+            
+            if(lang == '') {
+                if (last_lang == '') {
+                    lang = 'br';
+                } else {
+                    lang = last_lang;
+                }
+            }    
+            
+            if(lang == 'br') {
+                $( '#us' ).show();
+                $( '#br' ).hide();
+            } else {
+                $( '#br' ).show();
+                $( '#us' ).hide();
+            }
+            
+                $.getScript('http://localhost/deck.php?id='+id)
+                .done( function( script, textStatus ) {
+            
+                    var times = 0;
+                    var timer = setInterval( function(){
+                    
+                    if(window.deck !== undefined) {
+                        clearInterval(timer);
+                        
+                        $( '#main' ).css({ 'display' : 'block' });
+                        $( '#loading' ).css({ 'display' : 'none' });
+                        
+                        
+                        $( '#main' ).append('<div class="deckname linux black">'+decodeURIComponent(deck_name)+'</div>');
+                        if(tour_info != '') {
+                            $( '#main' ).append('<div class="tour linux">'+decodeURIComponent(tour_info)+'</div>');
+                        }
+                        if(player_name != '') {
+                            $( '#main' ).append('<div class="player linux">'+decodeURIComponent(player_name)+'</div>');
+                        }
+
+                        $( '#main' ).append('<div class="bline"></div><div class="black linux deck">MAIN DECK ('+deck+' CARTAS)</div><br />');
+                        if(lands['total']) {
+                            var lands_ul = '<ul class="card-list linux">';
+                            $.each (lands['cards'], function (card) {
+                                lands_ul += '<li onclick="showcard(\''+lands['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(lands['cards'][card]['name'+lang])+'\','+lands['cards'][card]['id']+');">'+lands['cards'][card]['num']+' '+decodeURIComponent(lands['cards'][card]['name'+lang])+'</li>';
+                            });
+                            lands_ul += '<hr><li><span class="black">'+lands['total']+' Terreno(s)</span><br /><br /></li>';
+                            $( '#main' ).append(lands_ul);
+                        }
+                        if(creatures['total']) {
+                            var creatures_ul = '<ul class="card-list linux">';
+                            $.each (creatures['cards'], function (card) {
+                                creatures_ul += '<li onclick="showcard(\''+creatures['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(creatures['cards'][card]['name'+lang])+'\','+creatures['cards'][card]['id']+');">'+creatures['cards'][card]['num']+' '+decodeURIComponent(creatures['cards'][card]['name'+lang])+'</li>';
+                            });
+                            creatures_ul += '<hr><li><span class="black">'+creatures['total']+' Criatura(s)</span><br /><br /></li>';
+                            $( '#main' ).append(creatures_ul);
+                        }
+                        if(plane['total']) {
+                            var plane_ul = '<ul class="card-list linux">';
+                            $.each (plane['cards'], function (card) {
+                                plane_ul += '<li onclick="showcard(\''+plane['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(plane['cards'][card]['name'+lang])+'\','+plane['cards'][card]['id']+');">'+plane['cards'][card]['num']+' '+decodeURIComponent(plane['cards'][card]['name'+lang])+'</li>';
+                            });
+                            plane_ul += '<hr><li><span class="black">'+plane['total']+' Planewalker(s)</span><br /><br /></li>';
+                            $( '#main' ).append(plane_ul);
+                        }
+                        if(other['total']) {
+                            var other_ul = '<ul class="card-list linux">';
+                            $.each (other['cards'], function (card) {
+                                other_ul += '<li onclick="showcard(\''+other['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(other['cards'][card]['name'+lang])+'\','+other['cards'][card]['id']+');">'+other['cards'][card]['num']+' '+decodeURIComponent(other['cards'][card]['name'+lang])+'</li>';
+                            });
+                            other_ul += '<hr><li><span class="black">'+other['total']+' Outra(s) Mágica(s)</span><br /><br /></li>';
+                            $( '#main' ).append(other_ul);
+                        }
+                        if(side['total']) {
+                            var side_ul = '<div class="main linux deck side">SIDE ('+side['total']+' CARTAS)</div>';
+                            side_ul += '<ul class="card-list linux side">';
+                            $.each (side['cards'], function (card) {
+                                side_ul += '<li onclick="showcard(\''+side['cards'][card]['img']+'\',\''+lang+'\',\''+decodeURIComponent(side['cards'][card]['name'+lang])+'\','+side['cards'][card]['id']+');">'+side['cards'][card]['num']+' '+decodeURIComponent(side['cards'][card]['name'+lang])+'</li>';
+                            });
+                            $( '#main' ).append(side_ul);
+                        }
+                    } else {
+                        times += 1;
+                        if(times >= 50) {
+                            clearInterval(timer);
+                            $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate(\'\', 0);\" />');
+                        }
+                    }
+                    
+                }, 100);
+                
+            })
+            .fail(function( jqxhr, settings, exception ) {
+                 $( '#loading' ).html('<img src="imgs/fail.jpg" class="img" onclick=\"populate(\'\', 0);\" />');
+            });
+        }
+    
+    </script>
+    
+</head>
+<body>
+    
+    <div id="top" class="linux">
+        <div id="link-menu">MENU<div id="top-menu"></div></div>
+    </div>
+    
+    <div class="line"></div>
+    
+    <div id="main">
+    </div>
+    
+    <div id="loading">
+        <img src="imgs/loading.gif" class="img" />
+    </div>
+    
+    <div id="divimg" class="tour linux">
+        <div id="open">página da carta</div>
+        <div onclick="closeimg()" class="close">fechar X</div>
+        <br>
+        <div id="cardname"></div>
+        <img id="imgc" class="imgc" />
+    </div>
+    
+</body>
+</html>

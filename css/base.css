@@ -39,10 +39,14 @@ body {
     float:right;
 }
 
-.line {
+.line, .bline {
     width:100%;
     height:5px;
     background-color:#06c;
+}
+
+.bline {
+    background-color:#009;
 }
 
 @media (min-width:600px) {

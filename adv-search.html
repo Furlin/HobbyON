@@ -171,6 +171,11 @@
                 margin-left: 5px;
             }
             
+            .sets {
+                width: 97%;
+                font-size: 20px;
+            }
+            
             .mini-text {
                 height: 26px;
                 text-align: center;
@@ -256,6 +261,11 @@
                     width: 75px;
                     font-size: 48px;
                 }
+                
+                .sets {
+                    width: 98%;
+                    font-size: 48px;
+                }
 
                 .mini-text {
                     height: 64px;
@@ -326,6 +336,11 @@
                 
                 .mini, .mini-text {
                     width: 55px;
+                    font-size: 32px;
+                }
+                
+                .sets {
+                    width: 97%;
                     font-size: 32px;
                 }
 
@@ -440,13 +455,6 @@
         
         <div class="line"></div>
         
-        <div id="logo"></div>
-        <div id="slogan-wrapper">
-            <div id="slogan" class="linux">SEU HOBBY ONLINE</div>
-        </div>
-
-        <div class="line" style="background-color:#009;"></div>
-            
         <div id="main">
             
             <form id="search-form" action="adv-result.html">
@@ -493,6 +501,10 @@
                         <li class="fff">
                             <input type="checkbox" name="exclude" id="exclude" />
                             <label for="exclude" class="big-label">Excluir cores não selecionadas</label>
+                        </li>
+                        <li class="fff">
+                            <input type="checkbox" name="req-color" id="req-color" />
+                            <label for="req-color" class="big-label">Todas as cores na mesma carta</label>
                         </li>
                     </ul>
                 </div>
@@ -573,38 +585,11 @@
                     
                 </div>
                 
-                <div id="format-block" class="form-block">
-                    
-                    <div class="block-title linux arrow fff" id="format-title" onclick="showhide('format')">Formato</div>
-                    
-                    <ul id="format-list" class="linux form">
-                        <li style="border-top:1px solid #999;"  class="fff">
-                            <input type="checkbox" name="form-t1" id="form-t1" />
-                            <label for="form-t1">Vintage (T1)</label>
-                        </li>
-                        <li class="fff">
-                            <input type="checkbox" name="form-t15" id="form-t15" />
-                            <label for="form-t15">Legacy (T1.5)</label>
-                        </li>
-                        <li class="fff">
-                            <input type="checkbox" name="form-t1x" id="form-t1x" />
-                            <label for="form-t1x">Extended (T1.x)</label>
-                        </li>
-                        <li class="fff">
-                            <input type="checkbox" name="form-t2" id="form-t2" />
-                            <label for="form-t2">Standard (T2)</label>
-                        </li>
-                        <li class="fff">
-                            <input type="checkbox" name="form-com" id="form-com" />
-                            <label for="form-com">Commander</label>
-                        </li>
-                        <li class="fff">
-                            <input type="checkbox" name="form-mod" id="form-mod" />
-                            <label for="form-mod">Modern</label>
-                        </li>
-                    </ul>
-                    
-                    
+                <div class="form-block linux">
+                    <span class="mini-title"></span>
+                    <select name="set-sel" class="lucida sets" >
+                        <option value="0">Selecionar Edição</option><option value="1">Nascidos dos Deuses</option><option value="2">Theros</option><option value="3">Labirinto do Dragão</option><option value="4">Portões Violados</option><option value="5">Retorno a Ravnica</option><option value="6">Retorno de Avacyn</option><option value="7">Ascensão das Trevas</option><option value="8">Innistrad</option><option value="9">Nova Phyrexia</option><option value="10">Mirrodin Sitiada</option><option value="11">Cicatrizes de Mirrodin</option><option value="12">Ascensão dos Eldrazi</option><option value="13">Despertar do Mundo</option><option value="14">Zendikar</option><option value="15">Alara Reborn</option><option value="16">Conflux</option><option value="17">Fragmentos de Alara</option><option value="18">Entardecer</option><option value="19">Pântano Sombrio</option><option value="20">Alvorecer</option><option value="21">Lorwyn</option><option value="22">Visão do Futuro</option><option value="23">Caos Planar</option><option value="24">Time Spiral</option><option value="25">Time Spiral "Timeshifted"</option><option value="26">Frente Fria</option><option value="27">Alianças</option><option value="28">Era Glacial</option><option value="29">Insurreição</option><option value="30">Pacto das Guildas</option><option value="31">Ravnica: A Cidade das Guildas</option><option value="32">Salvadores Kamigawa</option><option value="33">Traidores de Kamigawa</option><option value="34">Campeões de Kamigawa</option><option value="35">A Quinta Aurora</option><option value="36">Darksteel</option><option value="37">Mirrodin</option><option value="38">Flagelo</option><option value="39">Legiões</option><option value="40">Investida</option><option value="41">Julgamento</option><option value="42">Tormento</option><option value="43">Odisséia</option><option value="44">Apocalipse</option><option value="45">Conjunção</option><option value="46">Invasão</option><option value="47">Profecia</option><option value="48">Nêmesis</option><option value="49">Máscara de Mercádia</option><option value="50">O Destino de Urza</option><option value="51">O Legado de Urza</option><option value="52">A Saga de Urza</option><option value="53">Êxodo</option><option value="54">Fortaleza</option><option value="55">Tempestade</option><option value="56">Alisios</option><option value="57">Visões</option><option value="58">Miragem</option><option value="59">Terras Natais</option><option value="60">Fallen Empires</option><option value="61">The Dark</option><option value="62">Legends</option><option value="63">Antiquities</option><option value="64">Arabian Nights</option><option value="65">Coleção Básica Magic 2014</option><option value="66">Magic 2013</option><option value="67">Magic 2012</option><option value="68">Magic 2011</option><option value="69">Magic 2010</option><option value="70">Décima Edição</option><option value="71">Kit Básico - Nona Edição</option><option value="72">Kit Básico - Oitava Edição</option><option value="73">Sétima Edição</option><option value="74">Classica Sexta Edição</option><option value="75">Quinta Edição</option><option value="76">Quarta Edição</option><option value="77">Revised Edition</option><option value="78">Unlimited Edition</option><option value="79">Limited Edition Beta</option><option value="80">Limited Edition Alpha</option><option value="85">Premium Deck Series: Graveborn</option><option value="86">Premium Deck Series: Fire and Lightning</option><option value="87">Premium Deck Series: Slivers</option><option value="88">Modern Masters</option><option value="89">Duels of the Planeswalkers</option><option value="90">Chronicles</option><option value="91">Commander 2013 Edition</option><option value="92">Commander's Arsenal</option><option value="93">Planechase 2012 Edition</option><option value="94">Commander</option><option value="95">Archenemy</option><option value="96">Planechase</option><option value="97">From the Vault: Twenty</option><option value="98">From the Vault: Realms</option><option value="99">From the Vault: Legends</option><option value="100">From the Vault: Relics</option><option value="101">From the Vault: Exiled</option><option value="102">From the Vault: Dragons</option><option value="103">Duel Decks: Heroes vs. Monsters</option><option value="104">Duel Decks: Sorin vs. Tibalt</option><option value="105">Duel Decks: Izzet vs. Golgari</option><option value="106">Duel Decks: Venser vs. Koth</option><option value="107">Duel Decks: Ajani vs. Nicol Bolas</option><option value="108">Duel Decks: Knights vs. Dragons</option><option value="109">Duel Decks: Elspeth vs. Tezzeret</option><option value="110">Duel Decks: Phyrexia vs. The Coalition</option><option value="111">Duel Decks: Garruk vs. Liliana</option><option value="112">Duel Decks: Divine vs. Demonic</option><option value="113">Duel Decks: Jace vs. Chandra</option><option value="114">Duel Decks: Elves vs. Goblins</option><option value="118">Deckmasters</option><option value="119">Beatdown Box Set</option><option value="120">Battle Royale Box Set</option><option value="121">Anthologies</option><option value="123">Unhinged</option><option value="124">Unglued</option><option value="126">Starter 2000</option><option value="127">Starter 1999</option><option value="128">Portal Three Kingdoms</option><option value="129">Portal Segunda Era</option><option value="130">Portal</option><option value="131">Introductory Two-Player Set</option><option value="146">Champs (Promo)</option><option value="148">Arena League (Promo)</option><option value="155">European Land Program (Promo)</option><option value="156">Guru (Promo)</option><option value="157">Asia Pacific Land Program (Promo)</option>
+                    </select>
                 </div>
                 
                 <div class="form-block linux">
@@ -616,7 +601,7 @@
                         <option value="<">&lt;</option>
                         <option value="<=">&le;</option>
                     </select>
-                    <input type="text" class="lucida mini mini-text" name="power" placeholder="0" />
+                    <input type="number" class="lucida mini mini-text" name="power" placeholder="0" />
                 </div>
                 
                 <div class="form-block linux">
@@ -628,7 +613,7 @@
                         <option value="<">&lt;</option>
                         <option value="<=">&le;</option>
                     </select>
-                    <input type="text" class="lucida mini mini-text" name="resist" placeholder="0" />
+                    <input type="number" class="lucida mini mini-text" name="resist" placeholder="0" />
                 </div>
                 
                 <div class="form-block linux">
@@ -640,10 +625,10 @@
                         <option value="<">&lt;</option>
                         <option value="<=">&le;</option>
                     </select>
-                    <input type="text" class="lucida mini mini-text" name="loyal" placeholder="0" />
+                    <input type="number" class="lucida mini mini-text" name="loyal" placeholder="0" />
                 </div>
                 
-                <input type="submit" class="submit" class="linux" />
+                <input type="submit" class="submit" class="linux" value="Buscar" />
                 
             </form>
             

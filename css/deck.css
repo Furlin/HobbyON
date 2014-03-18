@@ -1,0 +1,88 @@
+.deck {
+    margin-top: 10px;
+}
+
+.side {
+    color: #222;
+}
+
+#open {
+    float: left;
+    margin-left: 20px;
+}
+
+.close {
+    float: right;
+    margin-right: 10px;
+}
+
+#divimg {
+    padding: 5px;
+    text-align: center;
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-list {
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+    padding-left: 10px;
+    list-style: none;
+    font-size: 20px;
+}
+
+#cardname {
+    padding: 5px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.black, .main {
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 5px;
+}
+
+.imgc {
+    width: 96%;
+    max-width: 600px;
+    margin-left: 2%;
+}
+
+.deckname, .tour, .player {
+    padding: 2px;
+}
+
+.card-list li {
+    padding: 2px 0;
+}
+
+.card-list li .black {
+    padding-left:0px;
+}
+
+hr {
+    width: 90%;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width:600px) {
+    .card-list, .black, .deckname, .tour, .player, .main {
+        font-size: 28px;
+    }
+}
+
+@media (min-width:480px) and (max-width:599px) {
+    .card-list, .black, .deckname, .tour, .player, .main {
+        font-size: 24px;
+    }
+}
+    
+@media (max-width:479px) {
+    .card-list, .black, .deckname, .tour, .player, .main {
+        font-size: 20px;
+    }
+}

@@ -48,6 +48,8 @@
             
             if(last_lang == lang) return;
             
+            $( '#loading' ).html('<img src="imgs/loading.gif" class="img" />');
+            
             if(lang == '') {
                 if (last_lang == '') {
                     lang = 'br';
