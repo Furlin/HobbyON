@@ -5,10 +5,6 @@
     border-bottom: 1px solid #999;
 }
 
-.tour, .player, .deck-name {
-    word-break:keep-all;
-}
-
 @media (min-width:600px) {
     .tour, .player, .deck-name {
         font-size: 32px;

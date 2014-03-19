@@ -85,9 +85,10 @@
 
                                 var deck = decodeURIComponent(unescape(decks[card]['deck']));
                                 var tour = decodeURIComponent(unescape(decks[card]['tour']));
+                                var tour2 = decodeURIComponent(unescape(decks[card]['tour_data']));
                                 var player = decodeURIComponent(unescape(decks[card]['player']));
                             
-                                $( '#main' ).append('<div class="deck" onclick="location.href=\'deck.html?id='+card+'\'"><div class="deck-name linuxb">'+deck+'</div>'+'<div class="tour linux">'+tour+'</div>'+'<div class="player linux">'+player+'</div>');
+                                $( '#main' ).append('<div class="deck" onclick="location.href=\'deck.html?id='+card+'\'"><div class="deck-name linuxb">'+deck+'</div>'+'<div class="tour linux">'+tour+'</div>'+'<div class="tour linux">'+tour2+'</div>'+'<div class="player linux">'+player+'</div>');
                         });
                     } else {
                         times += 1;
